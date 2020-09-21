@@ -1,0 +1,13 @@
+<?php
+  function Lurk($ask){
+      $url = "https://lurkmore.to/api.php?action=opensearch&search=".$ask;
+      $havit = curl_init($url);
+      curl_setopt($havit, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($havit, CURLOPT_CONNECTTIMEOUT, 5);
+      curl_setopt($havit, CURLOPT_TIMEOUT, 60);
+      $response = curl_exec($havit);
+      curl_close($havit);
+      $response = json_decode($response, true);
+      return $response;
+  }
+?>
